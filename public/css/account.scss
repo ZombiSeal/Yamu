@@ -1,0 +1,52 @@
+.account {
+    &__container {
+        display: flex;
+        align-items: stretch;
+    }
+
+    &__menu {
+        width: 15%;
+    }
+
+    &__content {
+        width: 77%;
+        border: 3px solid #FFD582;
+        padding: 50px;
+    }
+}
+
+.ac-menu {
+    &__item {
+        background: #FFD582;
+        padding: 20px;
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.table {
+    border: 3px solid #C1272D;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.form {
+    width: 100%;
+    .block {
+        margin-bottom: 30px;
+        &.row {
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        input {
+            width: calc(100%/3 - 20px);
+        }
+    }
+
+}
+

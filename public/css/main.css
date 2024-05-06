@@ -1,0 +1,8 @@
+.banner {
+  height: calc(100vh - 90px);
+}
+.banner video {
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=main.css.map */

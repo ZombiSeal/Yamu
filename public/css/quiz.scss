@@ -1,0 +1,33 @@
+.quiz-wrapper {
+    display: flex;
+    gap: 5%;
+    flex-wrap: wrap;
+
+    &__card {
+        display: block;
+        width: calc(100% / 3 - 5%);
+        border: 3px solid #FFD582;
+
+        img {
+            width: 100%;
+            height: 190px;
+            box-sizing: border-box;
+        }
+    }
+
+    &__text {
+        p {
+            margin: 10px 25px;
+        }
+    }
+}
+
+.quiz {
+    &__question {
+        width: 60%;
+
+        div {
+            margin-bottom: 30px;
+        }
+    }
+}

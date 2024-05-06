@@ -1,0 +1,21 @@
+.table {
+  padding: 20px 30px;
+  background: #FFD582;
+  text-align: center;
+}
+.table--reserve {
+  background: #C1272D;
+}
+.table.check {
+  border: 3px solid #C1272D;
+}
+
+.row {
+  margin-bottom: 50px;
+}
+
+.book-form {
+  width: 100%;
+}
+
+/*# sourceMappingURL=booking.css.map */

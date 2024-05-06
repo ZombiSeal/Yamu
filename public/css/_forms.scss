@@ -1,0 +1,27 @@
+.form {
+    width: 100%;
+
+    &__row {
+        margin-top: 95px;
+        @media screen and (max-width: 500px) {
+           flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    &__item {
+        margin-bottom: 35px;
+
+        &--no {
+            margin-bottom: 0;
+        }
+    }
+
+    &__error {
+        margin-bottom: 35px;
+        color: $colorAcent;
+        font-size: smaller;
+    }
+
+}
+

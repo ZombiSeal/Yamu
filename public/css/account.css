@@ -1,0 +1,44 @@
+.account__container {
+  display: flex;
+  align-items: stretch;
+}
+.account__menu {
+  width: 15%;
+}
+.account__content {
+  width: 77%;
+  border: 3px solid #FFD582;
+  padding: 50px;
+}
+
+.ac-menu__item {
+  background: #FFD582;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.ac-menu__item:last-child {
+  margin-bottom: 0;
+}
+
+.table {
+  border: 3px solid #C1272D;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.form {
+  width: 100%;
+}
+.form .block {
+  margin-bottom: 30px;
+}
+.form .block.row {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.form .block input {
+  width: calc(33.3333333333% - 20px);
+}
+
+/*# sourceMappingURL=account.css.map */

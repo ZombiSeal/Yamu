@@ -1,0 +1,22 @@
+.basket {
+  padding-right: 0;
+}
+.basket__row {
+  margin-bottom: 55px;
+  padding-right: 55px;
+}
+.basket__row h1 {
+  margin-bottom: 0;
+}
+.basket__clear {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.cart__item {
+  background: #ffffff;
+}
+
+/*# sourceMappingURL=basket.css.map */

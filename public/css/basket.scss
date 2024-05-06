@@ -1,0 +1,24 @@
+.basket {
+    padding-right: 0;
+
+    &__row {
+        margin-bottom: 55px;
+        padding-right: 55px;
+        h1 {
+            margin-bottom: 0;
+        }
+    }
+
+    &__clear {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+    }
+}
+
+.cart {
+    &__item {
+        background: #ffffff;
+    }
+}
