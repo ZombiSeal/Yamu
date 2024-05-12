@@ -22,7 +22,7 @@ class NameRequest extends FormRequest
     public function rules():array
     {
         return [
-            'name' => 'required|regex:/^([A-Za-zА-Яа-я-]{2,})$/u',
+            'name' => 'required|min:2',
         ];
     }
 
@@ -30,7 +30,7 @@ class NameRequest extends FormRequest
     {
         return [
             'name.required' => 'Заполните поле',
-            'name.regex' => 'Содержатся цифры или недостаочная длина'
+            'name.min' => 'Недостаточная длина'
         ];
     }
 }

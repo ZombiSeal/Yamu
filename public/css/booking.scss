@@ -1,21 +1,50 @@
-.table {
-    padding: 20px 30px;
-    background: #FFD582;
-    text-align: center;
-
-    &--reserve {
-        background: #C1272D;
-    }
-
-    &.check {
-        border: 3px solid #C1272D;
-    }
-}
-
-.row {
-    margin-bottom: 50px;
-}
-
 .book-form {
     width: 100%;
+    &__row {
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 5vh;
+    }
+
+    &__item {
+        width: 30%;
+    }
+    .table-error {
+        margin-bottom: 15px;
+        color: #C1272D;
+        font-weight: 800;
+    }
+
+    .btn {
+        width: 20%;
+        margin-top: 5vh;
+    }
 }
+
+.table {
+    fill: #FFD582;
+    cursor: pointer;
+
+    text {
+        fill: #000000;
+    }
+
+
+    &.reserve {
+        fill: #C1272D;
+        cursor: auto;
+        text {
+            fill: #ffffff;
+        }
+    }
+
+    &.check,
+    &:hover {
+        circle,
+        rect{
+            stroke: #C1272D;
+            stroke-width: 3px;
+        }
+    }
+}
+

@@ -3,9 +3,10 @@
     right: 0;
     top: 0;
     z-index: 2;
-    width: 750px;
+    width: 820px;
     display: flex;
     justify-content: flex-end;
+    overflow: clip;
     transform: translateX(calc(100% - 70px));
     transition: transform ease-in-out .45s .05s, z-index 0s 0.45s;
 
@@ -24,17 +25,10 @@
         width: calc(100% - 70px);
         height: 100vh;
         background: #ffffff;
+        overflow: scroll;
 
         &::after {
-            content: '';
-            position: absolute;
-            right: -440px;
-            top: -65px;
-            z-index: 0;
-            width: 955px;
-            height: 955px;
-            border-radius: 50%;
-            background: #FFFBF3;
+            @include circle-bg(right, top, -440px, -65px, 955px, 955px);
         }
     }
 
@@ -69,7 +63,7 @@
         padding: 20px 10px 20px 25px;
         margin-bottom: 10px;
         border-radius: 50% 0 0 50%;
-        box-shadow: 0px 4px 5px rgb(0, 0, 0, .25);
+        box-shadow: 2px 4px 5px rgb(0, 0, 0, .25);
 
         &.active {
             background: $colorAcent;

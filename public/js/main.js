@@ -9,3 +9,27 @@ if(burger) {
         })
     })
 }
+
+let phone = document.querySelector('#phone');
+let mask;
+
+if(phone) {
+    phone.addEventListener("focus", (e) => {
+        let maskOptions = {
+            mask: '+375(00)000-00-00',
+            lazy: false
+        }
+        mask = new IMask(phone, maskOptions);
+    })
+
+    phone.addEventListener('blur', (event) => {
+        if(mask.unmaskedValue === ''){
+            mask.updateOptions(
+                {lazy: true}
+            )
+            mask.destroy();
+
+            event.currentTarget.parentElement.classList.remove('focus');
+        }
+    })
+}

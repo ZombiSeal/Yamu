@@ -14,9 +14,27 @@
   gap: 10px;
   cursor: pointer;
 }
+.basket__content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-height: calc(100vh - 290px);
+  overflow: scroll;
+}
 
-.cart__item {
+.basket-info {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
   background: #ffffff;
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.15);
+}
+.basket-info__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 55px;
 }
 
 /*# sourceMappingURL=basket.css.map */

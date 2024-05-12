@@ -8,6 +8,7 @@ use App\Http\Requests\PhoneRequest;
 use App\Models\BookTable;
 use App\Models\Table;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,6 @@ class BookTableController extends Controller
         $tables = Table::orderBy('number')->get();
         $currentDate = Carbon::now()->format('Y-m-d');
         $bookTables = $this->getReserveTables($currentDate);
-
         return view('booking', ['tables' => $tables, 'bookTables' => $bookTables]);
     }
 
@@ -50,33 +50,30 @@ class BookTableController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'time' => 'required',
-            'table_id' => 'required',
+            'number' => 'required',
         ], [
-            'required' => 'Заполните поле'
+            'required' => 'Заполните поле',
+            'number.required' => 'Выберите столик'
         ]);
 
         $validatorOther = $validator->errors()->toArray();
 
         $validatorData = $validatorName + $validatorPhone + $validatorOther;
 
-        $isTableReserve = BookTable::where('is_active', 1)->where('table_id', $request->table_id)->where('date', $request->date)->get();
-
-        if(count($isTableReserve) !== 0){
-            $validatorTable = ['tableExist' => "Этот столик уже забронирован"];
-            $validatorData += $validatorTable;
-        }
-
         if(count($validatorData) == 0) {
+            $date = DateTime::createFromFormat('d.m.Y', $request->date);
+            $table = Table::where('number', $request->number)->first();
+
             $table = BookTable::create([
-                'table_id' => $request->table_id,
+                'table_id' => $table->id,
                 'user_id' => (Auth::id()) ?: 0,
                 'name' => $request->name,
                 'phone' => $request->phone,
-                'date' => $request->date,
+                'date' => $date->format('Y-m-d'),
                 'time' => $request->time,
             ]);
 
-            return response()->json(['status' => "ok", 'message' => 'Столик успешно забронирован', 'data' => $request->table_id]);
+            return response()->json(['status' => "ok", 'message' => 'Столик успешно забронирован', 'data' => $table->id]);
         } else {
             return response()->json(['status' => "error", 'errors' => $validatorData]);
         }
@@ -84,13 +81,13 @@ class BookTableController extends Controller
 
     public function updateTables(Request $request)
     {
-        $bookTables = $this->getReserveTables($request->date);
+        $date = DateTime::createFromFormat('d.m.Y', $request->date);
+        $bookTables = $this->getReserveTables($date->format('Y-m-d'));
         return response()->json($bookTables);
     }
 
     private function getReserveTables($date): array
     {
-
         $bookTables = BookTable::with('table')->where('date', $date)->where('is_active', 1)->get();
 
         if (!empty($bookTables)) {
@@ -101,6 +98,5 @@ class BookTableController extends Controller
 
         return $arBookTables ?? [];
     }
-
 
 }

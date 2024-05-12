@@ -1,22 +1,18 @@
 <div class="wrapper">
-    <h1>Авторизация</h1>
+    <h1 class="wrapper__title">Авторизация</h1>
     <form class="form" action="{{route('auth')}}" method="post">
-        <div class="form__item input form__item--no">
-            <input id="email" class="form__input input__text" type="email" name="email" placeholder=" ">
-            <label for="email" class="form__label input__label">Email</label>
-        </div>
-        <div class="form__error">Заполните поле</div>
-        <div class="form__item input form__item--no">
-            <input id="password" class="form__input input__text" type="password" name="password" placeholder=" ">
-            <label for="password" class="form__label input__label">Пароль</label>
+        <div class="form__item">
+            <x-input name="email" type="email">Email*</x-input>
+            <div class="input-error"></div>
         </div>
 
+        <div class="form__item">
+            <x-input name="password" type="password">Пароль*</x-input>
+            <div class="input-error"></div>
+        </div>
 
         <div class="row form__row">
-            <div class="btn">
-                <span class="btn__dot"></span>
-                <input class="btn__input form__sbmt" type="submit" value="Войти">
-            </div>
+            <x-button class="sbmt">Войти</x-button>
             <a href="{{route('r-menu')}}" class="reg-link line" data-page="register">Зарегистрироваться</a>
         </div>
 

@@ -22,7 +22,7 @@ class PhoneRequest extends FormRequest
     public function rules():array
     {
         return [
-            'phone' => ['required', 'regex:/^\+375\((29|33|44|17)\)\d{3}-\d{2}-\d{2}/'],
+            'phone' => ['required', 'regex:/^\+375\((29|33|44|17|25)\)\d{3}-\d{2}-\d{2}/'],
         ];
     }
 

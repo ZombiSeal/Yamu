@@ -18,9 +18,10 @@
     }
 
     &__error {
-        margin-bottom: 35px;
-        color: $colorAcent;
-        font-size: smaller;
+        color: $mainColor;
+        text-align: center;
+        padding: 20px 10px;
+        background: $colorAcent;
     }
 
 }

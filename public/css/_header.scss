@@ -40,6 +40,7 @@ header {
             &::before{
                 content: '';
                 @include dot(10px);
+                background: $colorAcent;
                 opacity: 0;
                 transform: scale(0);
                 transition: ease-in-out .3s;

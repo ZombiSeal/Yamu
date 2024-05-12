@@ -1,4 +1,4 @@
 <div class="wrapper">
-    <h1>Меню</h1>
+    <h1 class="wrapper__title">Меню</h1>
 </div>
 

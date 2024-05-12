@@ -1,9 +1,12 @@
+@import "variables";
+
 .basket {
     padding-right: 0;
 
     &__row {
         margin-bottom: 55px;
         padding-right: 55px;
+
         h1 {
             margin-bottom: 0;
         }
@@ -15,10 +18,28 @@
         gap: 10px;
         cursor: pointer;
     }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        max-height: calc(100vh - 290px);
+        overflow: scroll;
+    }
 }
 
-.cart {
-    &__item {
-        background: #ffffff;
+.basket-info {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    background: $mainColor;
+    box-shadow: 0 -6px 10px rgba(0, 0, 0, .15);
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 15px 55px;
     }
 }

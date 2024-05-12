@@ -23,7 +23,7 @@ class MainController extends Controller
             return response()->view('menu');
         }
         if($request->get('page') === "basket") {
-            return response()->view('basket');
+            return response()->view('basket.basket');
         }
     }
 }

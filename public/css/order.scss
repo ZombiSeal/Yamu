@@ -1,0 +1,239 @@
+@import "variables";
+
+%tabs {
+    text-align: center;
+    padding: 25px 0;
+    border: $border;
+    border-radius: 60px;
+    background: $mainColor;
+    cursor: pointer;
+    transition: ease-in-out .5s;
+
+    &.active {
+        font-weight: 700;
+        background: $colorAcent2;
+    }
+
+    &:hover {
+        box-shadow: inset 0 0 0 50px $colorAcent2;
+    }
+}
+
+.order {
+    align-items: flex-start;
+    gap: 30px;
+
+    &__warning {
+        color: $mainColor;
+        text-align: center;
+        padding: 20px 0;
+        background: $colorAcent;
+    }
+
+    &__data {
+        width: 65%;
+    }
+
+    &__form {
+        width: 100%;
+        position: relative;
+        border: $border;
+        padding: 45px 30px;
+        overflow: clip;
+        box-sizing: border-box;
+
+        &::after {
+            @include circle-bg(right, bottom, -700px, -550px, 1500px, 1500px);
+            z-index: -2;
+        }
+    }
+
+    &__sect {
+        margin-bottom: 7vh;
+    }
+
+    &__address {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .input {
+            flex: 1;
+            min-width: 20%;
+        }
+
+        .input:nth-child(-n+2) {
+            flex: 3;
+            min-width: 30%;
+        }
+
+        .input:nth-child(3) {
+            min-width: 15%;
+        }
+    }
+
+    &__sbmt {
+        display: flex;
+        position: relative;
+
+        .order__warning {
+            position: absolute;
+            right: -30px;
+            bottom: 0;
+            z-index: -1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 75%;
+            height: 7vh;
+            border-radius: 115px 0 0 0;
+
+            span {
+                width: max-content;
+                text-align: end;
+                margin-right: 30px;
+            }
+        }
+    }
+
+    &__info {
+        position: sticky;
+        top: 130px;
+        width: 50%;
+    }
+
+    &__block {
+        position: relative;
+        padding: 30px;
+        border: $border;
+        border-color: $colorAcent;
+        overflow: clip;
+        &::after {
+            @include circle-bg(right, top, -200px, -200px, 505px, 505px);
+            z-index: -2;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-height: 42vh;
+        margin-bottom: 20px;
+        overflow: scroll;
+    }
+
+    &__price {
+        margin-bottom: 20px;
+    }
+
+    &__coupon {
+        gap: 30px;
+        margin-top: 30px;
+
+        .input {
+            width: 60%;
+        }
+
+    }
+}
+
+.attention {
+    &__item {
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 15px;
+    }
+}
+
+.tabs {
+    gap: 30px;
+
+    &__item {
+        width: 50%;
+       @extend %tabs;
+    }
+}
+
+.tab-content {
+    display: none;
+    margin-top: 5vh;
+
+    &.show {
+        display: flex;
+        align-items: center;
+    }
+
+    &__text {
+        width: 100%;
+        border: $border;
+        border-color: $colorAcent;
+        padding: 15px;
+        background: $mainColor;
+    }
+
+    &--time {
+        gap: 15px;
+
+        .input {
+            width: 150px;
+        }
+    }
+}
+
+.payment {
+    gap: 10px;
+    &__item {
+        min-width: 23%;
+        flex: 1;
+        &:nth-child(2) {
+            flex: 2.5;
+        }
+
+        &:last-child {
+            flex: 3;
+        }
+        @extend %tabs;
+    }
+
+}
+
+.personal {
+    gap: 30px;
+    &__item {
+        width: 50%;
+    }
+}
+
+.coupon {
+    display: flex;
+    width: max-content;
+    border: $border;
+    border-color: $colorAcent;
+    background: $mainColor;
+
+    &__info {
+        margin: 10px;
+    }
+
+    &__code {
+        text-transform: uppercase;
+    }
+
+    &__del {
+        background: $colorAcent;
+
+        svg {
+            transition: ease-in-out .5s;
+        }
+
+        &:hover {
+            svg {
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+    }
+}

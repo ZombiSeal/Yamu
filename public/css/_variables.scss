@@ -1,0 +1,38 @@
+$maxWidth: 1470;
+$mainFont: "Ubuntu", sans-serif;
+$fontH1: "Advent Pro", sans-serif;
+
+$mainSize: 18;
+$mainSizeMob: 16;
+$sizeH1: 62;
+$sizeH1Mob: 34;
+$sizeH2: 48;
+$sizeH2Mob: 27;
+
+$acentWeight: bold;
+$sizeAcent: 22;
+$sizeAcentMob: 18;
+$sizeAcentS: 18;
+$sizeAcentMobS: 14;
+$sizeAcentL: 28;
+$sizeAcentMobL: 24;
+
+$mainFontColor: #000000;
+$mainColor: #ffffff;
+$colorAcent: #C1272D;
+$colorAcent2: #FFD582;
+$colorCircle: #FFFBF3;
+
+$border: 3px solid $colorAcent2;
+
+@mixin circle-bg($positionH, $positionV, $valH, $valV, $width, $height) {
+    content: '';
+    position: absolute;
+    #{$positionH}: $valH;
+    #{$positionV}: $valV;
+    z-index: 0;
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    background: $colorCircle;
+}
