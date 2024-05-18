@@ -185,5 +185,5 @@
     </div>
 </div>
 <link rel="stylesheet" href="{{asset('/css/order.css')}}">
-<script src="{{asset('/js/order.js')}}"></script>
+<script src="{{asset('/js/catalog.js')}}"></script>
 @endsection

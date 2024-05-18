@@ -8,6 +8,7 @@ use App\Http\Requests\PasswordRepeatRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\PhoneNoRequiredRequest;
 use App\Http\Requests\PhoneRequest;
+use App\Models\BookTable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,12 +93,13 @@ class UserController extends Controller
         $errors = $nameErr + $emailErr + $phoneErr;
 
         if (count($errors) === 0) {
+            $date = \DateTime::createFromFormat('d.m.Y', $request->birthday);
+            $birthday = $date->format('Y-m-d');
             User::where("email", Auth::user()->email)->update([
                 'name' => $request->name,
-                'lastname' => $request->lastname,
                 'email' => $request->email,
                 'phone' => $request->phone,
-                'birthday' => $request->birthday
+                'birthday' => $birthday
             ]);
             return response()->json(['status' => 'ok', 'message' => 'Данные успешно изменены']);
 
@@ -127,6 +129,17 @@ class UserController extends Controller
 
     }
 
+    public function showUserTables()
+    {
+        $tables = BookTable::where('user_id', Auth::id())->orderBy('date','desc')->with('table')->get();
+        if(!$tables->isEmpty()){
+            foreach ($tables as $table) {
+                $table->date = \DateTime::createFromFormat('Y-m-d', $table->date)->format('d.m.Y');
+                $table->time = \DateTime::createFromFormat('H:i:s', $table->time)->format('H:i');
+            }
+        }
+        return view('account.reserve', ['tables' => $tables]);
+    }
     private function checkField(array $data, $valid) : array
     {
         $rules = $valid;

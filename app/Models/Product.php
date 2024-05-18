@@ -23,10 +23,10 @@ class Product extends Model
 
     public function labels(): BelongsToMany
     {
-        return $this->belongsToMany(Label::class);
+        return $this->belongsToMany(Label::class, 'product_labels', 'product_id', 'label_id');
     }
 
-    public function sales(): BelongsTo
+    public function sale(): BelongsTo
     {
         return $this->belongsTo(Sale::class);
     }

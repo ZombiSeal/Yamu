@@ -25,6 +25,6 @@ class BasketCard extends Component
      */
     public function render()
     {
-        return view('basket.card');
+        return view('catalog.basket-card');
     }
 }

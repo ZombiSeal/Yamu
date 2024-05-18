@@ -1,44 +1,116 @@
 .account__container {
   display: flex;
   align-items: stretch;
+  gap: 15px;
 }
 .account__menu {
-  width: 15%;
+  flex: 1;
 }
 .account__content {
-  width: 77%;
+  flex: 5;
   border: 3px solid #FFD582;
   padding: 50px;
 }
 
+.ac-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 65vh;
+}
 .ac-menu__item {
-  background: #FFD582;
-  padding: 20px;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: #ffffff;
+  border: 3px solid #FFD582;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+}
+.ac-menu__item svg,
+.ac-menu__item a {
+  transition: ease-in-out 0.5s;
 }
 .ac-menu__item:last-child {
   margin-bottom: 0;
 }
-
-.table {
-  border: 3px solid #C1272D;
-  margin-bottom: 20px;
-  padding: 10px;
+.ac-menu__item.active {
+  background: #FFD582;
+}
+.ac-menu__item:hover {
+  box-shadow: inset 0 0 0 5px #FFD582;
+}
+.ac-menu__item.active svg, .ac-menu__item:hover svg {
+  transform: scale(1.4);
+}
+.ac-menu__item.active a, .ac-menu__item:hover a {
+  font-size: 0;
 }
 
-.form {
+.account-form {
   width: 100%;
 }
-.form .block {
-  margin-bottom: 30px;
-}
-.form .block.row {
-  justify-content: flex-start;
+.account-form__block {
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 5vh;
 }
-.form .block input {
-  width: calc(33.3333333333% - 20px);
+.account-form__item {
+  min-width: 10%;
+  flex: 2;
+}
+.account-form__item:nth-child(4) {
+  flex: 1;
+}
+.account-form .btn {
+  width: 30%;
+}
+
+.block {
+  margin-top: 7vh;
+}
+.block:first-child {
+  margin-top: 0;
+}
+
+.table {
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+}
+.table p {
+  margin-bottom: 10px;
+}
+.table__info {
+  width: 60%;
+}
+.table__action {
+  display: flex;
+  gap: 10px;
+}
+.table__icon {
+  background: #C1272D;
+  padding: 5px;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+.table__icon:hover {
+  box-shadow: inset 0 0 0 2px #ffffff;
+}
+.table__icon svg {
+  fill: #ffffff;
+  vertical-align: top;
+}
+.table__no-reserve {
+  font-weight: 700;
+  color: #9ca3af;
 }
 
 /*# sourceMappingURL=account.css.map */

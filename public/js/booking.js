@@ -1,7 +1,10 @@
 let form = document.querySelector('.book-form');
 let btnSbmt = document.querySelector('.book-form__sbmt');
 let date = document.querySelector('input[type="date"]');
+let time = document.querySelector('input[type="time"]');
 date.value = new Date().toISOString().slice(0, 10);
+let isEditLink = document.querySelector('.current-info');
+
 
 let tables = document.querySelectorAll('.table');
 if (tables.length !== 0) {
@@ -11,43 +14,58 @@ if (tables.length !== 0) {
         });
     })
 }
-document.addEventListener('DOMContentLoaded', updateTables);
-date.addEventListener('change', updateTables);
+document.addEventListener('DOMContentLoaded', () => {
+    setCurrentTime();
 
-let inpunts = document.querySelectorAll("input[type='text']");
-if (inpunts.length !== 0) {
-    inpunts.forEach(input => {
-        input.addEventListener('keyup', () => {
-            let inputLength = 2;
-            let errorBlock = input.parentElement.nextElementSibling;
+    if (isEditLink) {
+        date._flatpickr.setDate(document.querySelector('input[name="currentDate"]').value);
+        time._flatpickr.setDate(document.querySelector('input[name="currentTime"]').value);
+        setEditTable();
+    }
 
-            if(input.value.length !== 0) {
-                if (input.value.length >= inputLength) {
-                    if (input.name === 'phone') {
-                        let phoneRegex = /\+375\((29|33|44|17|25)\)\d{3}-\d{2}-\d{2}/;
-                        let isValidPhone = phoneRegex.test(input.value);
-                        input.classList.toggle('error', !isValidPhone);
-                        errorBlock.innerHTML = (!isValidPhone) ? "Неверный формат телефона" : "";
-                    } else {
-                        input.classList.remove('error');
-                        if (errorBlock) errorBlock.innerHTML = "";
-                    }
-                } else {
-                    input.classList.add('error');
-                    if(errorBlock) errorBlock.innerHTML = "Недостаточная длина";
-                }
-            } else {
-                if(errorBlock) errorBlock.innerHTML = "Заполните поле";
-            }
+    updateTables();
+});
+date.addEventListener('change', () => {
+    setCurrentTime();
 
-        })
-    })
-}
+    if (isEditLink) {
+        time._flatpickr.setDate(document.querySelector('input[name="currentTime"]').value);
+        setEditTable();
+    }
+
+    updateTables();
+});
+
 btnSbmt.addEventListener('click', event => {
     event.preventDefault();
     formSubmit();
 })
 
+function setCurrentTime() {
+    let currentDate = getCurrentDate();
+    if (date.value === currentDate && (new Date().getHours() <= 22 && new Date().getHours() >= 10)) {
+        time._flatpickr.setDate(getCurrentTime());
+        time._flatpickr.set('minTime', getCurrentTime());
+    } else {
+        time._flatpickr.setDate("10:00");
+        time._flatpickr.set('minTime', "10:00");
+    }
+}
+
+function getCurrentDate() {
+    const date = new Date();
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+}
+
+function getCurrentTime() {
+    const date = new Date();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
 
 function updateTables() {
     fetch('/booking/update', {
@@ -67,9 +85,8 @@ function updateTables() {
             let tables = document.querySelectorAll('.table') || [];
             if (tables.length !== 0) {
                 tables.forEach(table => {
-                    if (data.includes(+table.getAttribute('data-number'))) {
-                        table.classList.add('reserve');
-                    }
+                    let isReserve = data.includes(+table.getAttribute('data-number'));
+                    table.classList.toggle('reserve', isReserve);
                 })
             }
         } else {
@@ -88,6 +105,8 @@ function formSubmit() {
     let checkTable = document.querySelector('.table.check');
     let tableNumber = (checkTable) ? checkTable.getAttribute('data-number') : "";
     formData.append('number', tableNumber);
+    formData.append('action', form.getAttribute('data-action'));
+    if (isEditLink) formData.append('currentNumber', document.querySelector('input[name="currentNumber"]').value);
 
     fetch(form.getAttribute('action'), {
         method: 'POST',
@@ -102,11 +121,16 @@ function formSubmit() {
         if (data["status"] === "ok") {
             alert(data["message"]);
             updateTables();
-        } else {
-            if(data["errors"].length !== 0) {
+        }
+        if (data["status"] === "edit") {
+            window.location = "/account/reserve";
+        }
+        if (data["status" === "error"]) {
+            if (data["errors"].length !== 0) {
                 setErrors(data["errors"]);
             }
         }
+
     }).catch((error) => console.log(error));
 }
 
@@ -123,29 +147,11 @@ function checkTable(table) {
     }
 }
 
-function setErrors(dataErrors) {
-    let errors = document.querySelectorAll('.input-error');
-    if (errors.length !== 0) {
-        errors.forEach(error => {
-            error.innerHTML = "";
-        })
-    }
-
-    for (let key in dataErrors) {
-        if (key !== 'number') {
-            let errorInput = document.querySelector('input[name="' + key + '"]');
-            errorInput.classList.add('error');
-            let errorBlock = errorInput.parentElement.nextElementSibling;
-            if (errorBlock) {
-                errorBlock.innerHTML = dataErrors[key];
-            }
-        } else {
-            if (!document.querySelector('.table-error')) {
-                let errorElem = document.createElement('div');
-                errorElem.textContent = dataErrors[key];
-                errorElem.classList.add('table-error');
-                form.insertBefore(errorElem, document.querySelector('.rest'));
-            }
-        }
-    }
+function setEditTable() {
+    let editNumber = document.querySelector('input[name="currentNumber"]').value;
+    let editDate = document.querySelector('input[name="currentDate"]').value;
+    let table = document.querySelector('.table[data-number="' + editNumber + '"]');
+    let isEditTable = date.value === editDate;
+    table.classList.toggle('edit', isEditTable);
 }
+

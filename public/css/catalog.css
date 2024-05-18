@@ -1,0 +1,110 @@
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  grid-column-gap: 30px;
+}
+.product-card {
+  position: relative;
+  padding-bottom: 20px;
+  border: 3px solid #FFD582;
+  background: #ffffff;
+  overflow: clip;
+  transition: ease-in-out 0.3s;
+}
+.product-card.hover {
+  box-shadow: -12px 11px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+}
+.product-card.active {
+  border-color: #C1272D;
+}
+.product-card::after {
+  content: "";
+  position: absolute;
+  right: -4%;
+  bottom: -4%;
+  z-index: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff7ee;
+  z-index: 0;
+  background: #C1272D;
+}
+.product-card__labels {
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+}
+.product-card__labels svg {
+  fill: #C1272D;
+}
+.product-card__row {
+  margin: 0 20px;
+}
+.product-card__img {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 240px;
+  margin: 30px 0;
+}
+.product-card__img img {
+  position: relative;
+  z-index: 1;
+}
+.product-card__img::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: #C1272D;
+  margin-top: 20px;
+  z-index: 1;
+}
+.product-card__img::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -70%;
+  z-index: 0;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: #fff7ee;
+  z-index: 0;
+}
+.product-card__title {
+  display: block;
+  height: 3rem;
+  line-height: 1.5rem;
+  overflow: hidden;
+  margin: 0 20px 15px;
+}
+.product-card__info {
+  height: 2.5rem;
+  margin-bottom: 35px;
+}
+.product-card__price {
+  color: #C1272D;
+}
+.product-card__price--old {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+.product-card__basket svg {
+  position: relative;
+  fill: #ffffff;
+  z-index: 1;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+}
+.product-card__basket svg:hover {
+  transform: scale(1.3);
+}
+
+/*# sourceMappingURL=catalog.css.map */

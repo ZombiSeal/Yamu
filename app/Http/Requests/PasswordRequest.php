@@ -32,7 +32,7 @@ class PasswordRequest extends FormRequest
     {
         return [
             'password.required' => 'Заполните поле',
-            'password.min' => 'Ненадежгый пароль(минимум 6 символов)'
+            'password.min' => 'Ненадежный пароль(минимум 6 символов)'
         ];
 
     }

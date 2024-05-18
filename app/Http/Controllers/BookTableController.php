@@ -15,18 +15,13 @@ use Illuminate\Support\Facades\Validator;
 
 class BookTableController extends Controller
 {
-    public function index()
+    public function index(string $action = "", int $id = 0)
     {
-        $tables = Table::orderBy('number')->get();
-        $currentDate = Carbon::now()->format('Y-m-d');
-        $bookTables = $this->getReserveTables($currentDate);
-        return view('booking', ['tables' => $tables, 'bookTables' => $bookTables]);
-    }
-
-    public function showUserTables()
-    {
-        $tables = BookTable::where('user_id', Auth::id())->orderBy('date','desc')->get();
-        return view('account.reserve', ['tables' => $tables]);
+        if (!empty($action) && $action === 'edit') {
+            $table = BookTable::find($id);
+            $table->date = DateTime::createFromFormat('Y-m-d', $table->date)->format('d.m.Y');
+        }
+        return view('booking', ['table' => $table ?? [], 'action' => $action]);
     }
 
     public function cancelReserve(Request $request)
@@ -35,15 +30,24 @@ class BookTableController extends Controller
         return ($cancel) ? response()->json(["status" => "ok"]) : response()->json(["status" => "error"]);
     }
 
-    private function checkField(array $data, $valid):array
+    private function checkField(array $data, $valid): array
     {
         $rules = $valid;
         $validator = Validator::make($data, $rules->rules(), $rules->messages());
         return $validator->errors()->toArray();
     }
-    public function reserveTable(Request $request)
-    {
 
+    public function reserveTable(Request $request): \Illuminate\Http\JsonResponse
+    {
+        if($request->action === 'create') {
+            return response()->json($this->createReserve($request));
+        } else {
+           return response()->json($this->editReserve($request));
+        }
+    }
+
+    private function createReserve(Request $request) : array
+    {
         $validatorName = $this->checkField($request->all(), new NameRequest());
         $validatorPhone = $this->checkField($request->all(), new PhoneRequest());
 
@@ -60,22 +64,57 @@ class BookTableController extends Controller
 
         $validatorData = $validatorName + $validatorPhone + $validatorOther;
 
-        if(count($validatorData) == 0) {
-            $date = DateTime::createFromFormat('d.m.Y', $request->date);
-            $table = Table::where('number', $request->number)->first();
+        if (count($validatorData) == 0) {
+            $date = DateTime::createFromFormat('d.m.Y', $request->date)->format('Y-m-d');
+            $tableInfo = Table::where('number', $request->number)->first();
 
             $table = BookTable::create([
-                'table_id' => $table->id,
+                'table_id' => $tableInfo->id,
                 'user_id' => (Auth::id()) ?: 0,
                 'name' => $request->name,
                 'phone' => $request->phone,
-                'date' => $date->format('Y-m-d'),
+                'date' => $date,
                 'time' => $request->time,
             ]);
 
-            return response()->json(['status' => "ok", 'message' => 'Столик успешно забронирован', 'data' => $table->id]);
+            return ['status' => "ok", 'message' => 'Столик успешно забронирован', 'data' => $table->id];
         } else {
-            return response()->json(['status' => "error", 'errors' => $validatorData]);
+            return ['status' => "error", 'errors' => $validatorData];
+        }
+    }
+
+    public function editReserve(Request $request): array
+    {
+        $validatorName = $this->checkField($request->all(), new NameRequest());
+        $validatorPhone = $this->checkField($request->all(), new PhoneRequest());
+
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'time' => 'required',
+        ], [
+            'required' => 'Заполните поле',
+        ]);
+
+        $validatorOther = $validator->errors()->toArray();
+
+        $validatorData = $validatorName + $validatorPhone + $validatorOther;
+
+        if (count($validatorData) == 0) {
+            $date = DateTime::createFromFormat('d.m.Y', $request->date)->format('Y-m-d');
+            $tableInfo = Table::where('number', $request->number ?? $request->currentNumber)->first();
+
+            $table = BookTable::where('id', $request->get('id'))
+                ->update([
+                    'table_id' => $tableInfo->id,
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                    'date' => $date,
+                    'time' => $request->time,
+                ]);
+
+            return ['status' => "edit", 'message' => 'Бронь успешно изменена'];
+        } else {
+            return ['status' => "error", 'errors' => $validatorData];
         }
     }
 

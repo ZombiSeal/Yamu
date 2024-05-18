@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -20,10 +22,11 @@ class MainController extends Controller
             return response()->view('register');
         }
         if($request->get('page') === "menu") {
-            return response()->view('menu');
+            $categories = Category::all()->where('is_active', true);
+            return response()->view('menu', ['categories' => $categories]);
         }
         if($request->get('page') === "basket") {
-            return response()->view('basket.basket');
+            return response()->view('catalog.basket');
         }
     }
 }

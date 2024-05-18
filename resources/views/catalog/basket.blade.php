@@ -22,3 +22,5 @@
     </div>
 </div>
 <link rel="stylesheet" href="{{asset('/css/basket.css')}}">
+<script src="{{asset('/js/catalog.js')}}"></script>
+

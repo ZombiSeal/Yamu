@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookTableController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\QuizController;
@@ -27,8 +28,7 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::controller(BookTableController::class)->group(function () {
-    Route::get('/booking',  'index')->name('booking');
-    Route::get('/account/reserve', 'showUserTables')->middleware('auth')->name('account.reserve');
+    Route::get('/booking/{action?}/{id?}',  'index')->name('booking');
     Route::post('/account/reserve', 'cancelReserve')->middleware('auth')->name('account.reserve');
     Route::post('/booking/', 'reserveTable')->name('booking.reserve');
     Route::post('/booking/update', 'updateTables')->name('booking.update');
@@ -42,6 +42,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/account/data', 'index')->middleware('auth')->name('account.data');
     Route::post('/account/data/edit', 'edit')->middleware('auth')->name('account.data.edit');
     Route::post('/account/data/editPass', 'editPassword')->middleware('auth')->name('account.data.password');
+
+    Route::get('/account/reserve', 'showUserTables')->middleware('auth')->name('account.reserve');
 });
 
 Route::controller(QuizController::class)->group(function () {
@@ -49,6 +51,13 @@ Route::controller(QuizController::class)->group(function () {
     Route::get('/quizzes/{id}', 'detail')->whereNumber('id')->name('quizzes.detail');
     Route::get('/quizzes/{id}/update', 'updateQuestion')->whereNumber('id')->name('quizzes.update');
     Route::get('/quizzes/{id}/end', 'end')->whereNumber('id')->name('quizzes.end');
+});
+
+Route::controller(CatalogController::class)->group(function () {
+    Route::get('/catalog/{category}', 'index')->name('catalog');
+    Route::get('/catalog/{category}/{id}', 'detail')->name('catalog.detail');
+    Route::post('/catalog/add', 'addToBasket')->name('catalog.addToBasket');
+
 });
 
 Route::get('/about', function () {return view('about');})->name('about');
@@ -62,7 +71,7 @@ Route::get('/account', function () { return redirect('/account/data');})->middle
 Route::get('/account/orders', function () { return view('account.orders');})->middleware('auth')->name('account.orders');
 Route::get('/account/coupons', function () { return view('account.coupons');})->middleware('auth')->name('account.coupons');
 
-Route::get('/basket', function () { return view('basket.order');})->name('order');
+Route::get('/basket', function () { return view('catalog.order');})->name('order');
 
 Route::view('/404', 'errors.404')->name('login');
 

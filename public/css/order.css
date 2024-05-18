@@ -45,7 +45,7 @@
   width: 1500px;
   height: 1500px;
   border-radius: 50%;
-  background: #FFFBF3;
+  background: #fff7ee;
   z-index: -2;
 }
 .order__sect {
@@ -110,7 +110,7 @@
   width: 505px;
   height: 505px;
   border-radius: 50%;
-  background: #FFFBF3;
+  background: #fff7ee;
   z-index: -2;
 }
 .order__list {

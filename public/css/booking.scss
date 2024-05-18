@@ -38,8 +38,15 @@
         }
     }
 
+    &.edit {
+        circle,
+        rect{
+            fill: #dedede;
+        }
+    }
+
     &.check,
-    &:hover {
+    &:not(.reserve):hover {
         circle,
         rect{
             stroke: #C1272D;

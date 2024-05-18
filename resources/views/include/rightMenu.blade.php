@@ -4,7 +4,10 @@
             <ul class="r-menu__list">
                 <li class="r-menu__item content-link">
                     <a href="{{route('r-menu')}}" class="r-menu__link" data-page="basket">
-                        <img src="/images/svg/icon_shop.svg" alt="">
+                        <div class="capacity {{(session('fullCapacity')) ? "show" : ""}}">{{(session('fullCapacity')) ?: ""}}</div>
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href="/images/svg/icon-shop.svg#shop"></use>
+                        </svg>
                     </a>
                 </li>
                 <li class="r-menu__item content-link">

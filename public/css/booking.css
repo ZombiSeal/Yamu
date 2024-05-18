@@ -33,9 +33,13 @@
 .table.reserve text {
   fill: #ffffff;
 }
+.table.edit circle,
+.table.edit rect {
+  fill: #dedede;
+}
 .table.check circle,
-.table.check rect, .table:hover circle,
-.table:hover rect {
+.table.check rect, .table:not(.reserve):hover circle,
+.table:not(.reserve):hover rect {
   stroke: #C1272D;
   stroke-width: 3px;
 }

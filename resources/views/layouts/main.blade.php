@@ -9,11 +9,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@800&family=Ubuntu:wght@300;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@800&family=Ubuntu:wght@400;700&display=swap"
           rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="{{asset('/js/main.js')}}"></script>
     <title>Document</title>
 </head>
 <body>
@@ -26,7 +28,6 @@
 </body>
 <script src="{{asset('/js/libs/input-mask.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="{{asset('/js/main.js')}}"></script>
 <script src="{{asset('/js/libs/flatpicker.js')}}"></script>
 
 </html>

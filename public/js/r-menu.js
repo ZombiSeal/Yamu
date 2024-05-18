@@ -1,4 +1,4 @@
-let btns = document.querySelectorAll('.r-menu__item.content-link') || [];
+let btns = document.querySelectorAll('.r-menu__item.content-link') || []
 
 if(btns.length !== 0) {
     btns.forEach(btn => {
@@ -8,6 +8,7 @@ if(btns.length !== 0) {
         })
     })
 }
+
 document.addEventListener('click', event => {
     if(event.target.classList.contains('reg-link')) {
         event.preventDefault();
@@ -20,6 +21,7 @@ document.addEventListener('click', event => {
     }
 })
 
+
 function getMenuContent(url) {
     fetch(url, {
         method:'GET',
@@ -31,9 +33,9 @@ function getMenuContent(url) {
         return res.text();
     }).then(data => {
         document.querySelector(".r-menu-wrapper__content").innerHTML = data;
+       init();
     }).catch((error) => console.log(error));
 }
-
 function submitForm(form) {
     let formData = new FormData(form);
     fetch(form.getAttribute('action'), {
@@ -92,20 +94,7 @@ function menuRoute(btn) {
     }
 }
 
-function setErrors(dataErrors) {
-    let errors = document.querySelectorAll('.input-error');
-    if (errors.length !== 0) {
-        errors.forEach(error => {
-            error.innerHTML = "";
-        })
-    }
-
-    for (let key in dataErrors) {
-        let errorInput = document.querySelector('input[name="' + key + '"]');
-        errorInput.classList.add('error');
-        let errorBlock = errorInput.parentElement.nextElementSibling;
-        if (errorBlock) {
-            errorBlock.innerHTML = dataErrors[key];
-        }
-    }
+function init() {
+    setInputs();
+    setNumber();
 }

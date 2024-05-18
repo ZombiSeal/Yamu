@@ -1,23 +1,23 @@
 <div class="wrapper">
-    <h1>Регистрация</h1>
+    <h1 class="wrapper__title">Регистрация</h1>
     <form class="form" action="{{route('register')}}" method="post">
         <div class="form__item">
-            <x-input name="name" type="text">Имя*</x-input>
+            <x-input class="validate" name="name" type="text">Имя*</x-input>
             <div class="input-error"></div>
         </div>
 
         <div class="form__item">
-            <x-input name="email" type="email">Email*</x-input>
+            <x-input class="validate"  name="email" type="email">Email*</x-input>
             <div class="input-error"></div>
         </div>
 
         <div class="form__item">
-            <x-input name="password" type="password">Пароль*</x-input>
+            <x-input class="validate"  name="password" type="password">Пароль*</x-input>
             <div class="input-error"></div>
         </div>
 
         <div class="form__item">
-            <x-input name="password_repeat" type="password">Повторите пароль*</x-input>
+            <x-input class="validate" name="password_repeat" type="password">Повторите пароль*</x-input>
             <div class="input-error"></div>
         </div>
 

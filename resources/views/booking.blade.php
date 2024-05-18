@@ -1,15 +1,31 @@
 @extends('layouts.main')
 @section('content')
+    @php
+        $valueName = $valuePhone = "";
+        if(auth()->check()) {
+            $valueName = ($action !== 'edit') ? auth()->user()->name : $table->name;
+            $valuePhone = ($action !== 'edit') ? auth()->user()->phone : $table->phone;
+        }
+    @endphp
     <div class="container">
         <h1>Бронирование</h1>
-        <form class="book-form" action="{{route('booking.reserve')}}" method="post">
+        <form class="book-form"
+              action="{{route('booking.reserve', ($action==='edit') ? ['id' => $table->id] : [])}}"
+              method="post"
+              data-action="{{($action !== 'edit') ? 'create' : 'edit'}}">
             <div class="book-form__row row">
                 <div class="book-form__item">
-                    <x-input name="name" type="text">Имя*</x-input>
+                    <x-input class="validate"
+                             name="name"
+                             type="text"
+                             value="{{$valueName}}">Имя*</x-input>
                     <div class="input-error"></div>
                 </div>
                 <div class="book-form__item">
-                    <x-input name="phone" type="text">Телефон*</x-input>
+                    <x-input class="validate"
+                             name="phone"
+                             type="text"
+                             value="{{$valuePhone}}">Телефон*</x-input>
                     <div class="input-error"></div>
                 </div>
                 <div class="book-form__item">
@@ -24,12 +40,12 @@
                 <g id="rest-map">
                     <g id="line">
                         <path id="Vector 3" d="M5 634.56H1464V433.492H1410.91V251.742H1115L1115 5.06982H647.49H5V634.56Z" fill="white" stroke="black" stroke-width="10"/>
-                        <path id="Vector 4" d="M1407.5 437H1169.5L1111.5 368V256" stroke="black" stroke-width="3"/>
+                        <path id="Vector 4" d="M1407.5 437H1169.5L1111.5 368V256" stroke="black" stroke-width="3" fill="none"/>
                         <text id="WC" fill="black" xml:space="preserve" style="white-space: pre" font-family="Ubuntu" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="1255" y="345.187">WC</tspan></text>
                         <text id="&#208;&#154;&#209;&#131;&#209;&#133;&#208;&#189;&#209;&#143;" fill="black" xml:space="preserve" style="white-space: pre" font-family="Ubuntu" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="914" y="207.187">&#x41a;&#x443;&#x445;&#x43d;&#x44f;</tspan></text>
                         <text id="&#208;&#147;&#208;&#176;&#209;&#128;&#208;&#180;&#208;&#181;&#209;&#128;&#208;&#190;&#208;&#177;" fill="black" xml:space="preserve" style="white-space: pre" font-family="Ubuntu" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="1072" y="592.187">&#x413;&#x430;&#x440;&#x434;&#x435;&#x440;&#x43e;&#x431;</tspan></text>
-                        <path id="Vector 5" d="M765 7V369H1113" stroke="black" stroke-width="3"/>
-                        <path id="Vector 6" d="M1315 634.56V535H914V634.56" stroke="black" stroke-width="3"/>
+                        <path id="Vector 5" d="M765 7V369H1113" stroke="black" stroke-width="3" fill="none"/>
+                        <path id="Vector 6" d="M1315 634.56V535H914V634.56" stroke="black" stroke-width="3" fill="none"/>
                         <text id="&#208;&#146;&#209;&#133;&#208;&#190;&#208;&#180;" transform="translate(1421 558) rotate(-90)" fill="black" xml:space="preserve" style="white-space: pre" font-family="Ubuntu" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="0" y="20.187">&#x412;&#x445;&#x43e;&#x434;</tspan></text>
                         <rect id="window7" x="408.5" y="2.5" width="179" height="6" fill="white" stroke="black" stroke-width="3"/>
                         <rect id="window6" x="64.5" y="2.5" width="179" height="6" fill="white" stroke="black" stroke-width="3"/>
@@ -123,8 +139,16 @@
                     </g>
                 </g>
             </svg>
-            <x-button class="book-form__sbmt">Забронировать</x-button>
+            <x-button class="book-form__sbmt">{{($action==='edit') ? "Изменить" : "Забронировать"}}</x-button>
         </form>
+        @if($action === 'edit')
+            <div class="current-info" style="display: none">
+                <input type="hidden" name="currentDate" value="{{$table->date}}">
+                <input type="hidden" name="currentTime" value="{{$table->time}}">
+                <input type="hidden" name="currentNumber" value="{{$table->table->number}}">
+
+            </div>
+        @endif
     </div>
 
     <link rel="stylesheet" href="{{asset('/css/booking.css')}}">
