@@ -12,21 +12,14 @@ class Question extends Component
      *
      * @return void
      */
-    public $quiz;
-    public $count;
-    public $questions;
-    public $question;
-    public $answers;
 
-    public function __construct($quiz, $count, $questions, $question, $answers)
-    {
-        $this->quiz = $quiz;
-        $this->count = $count;
-        $this->questions = $questions;
-        $this->question = $question;
-        $this->answers = $answers;
 
-    }
+    public function __construct(
+        public $quiz,
+        public int $count,
+        public $questions,
+        public $question,
+        public $answers) {}
 
     /**
      * Get the view / contents that represent the component.

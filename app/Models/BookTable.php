@@ -22,6 +22,7 @@ class BookTable extends Model
         'date',
         'time',
         'name',
-        'phone'
+        'phone',
+        'is_active'
     ];
 }

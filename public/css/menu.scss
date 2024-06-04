@@ -1,4 +1,5 @@
 @import "variables";
+
 .menu {
     display: grid;
     grid-template-columns: repeat(3, 175px);
@@ -12,7 +13,26 @@
         align-items: center;
         justify-content: center;
         gap: 5px;
-        border:$border;
+        border: $border;
         background: $mainColor;
+        transition: ease-in-out .5s;
+
+        &.active {
+            background: $colorAcent2;
+        }
+        @include insertShadow(5px, $colorAcent2);
+
+        &.active,
+        &:hover {
+            svg {
+                transform: scale(1.4);
+            }
+
+            font-size: 0;
+        }
+
+        svg {
+            transition: ease-in-out .5s;
+        }
     }
 }

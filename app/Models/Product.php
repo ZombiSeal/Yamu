@@ -11,6 +11,17 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'img_path',
+        'price',
+        'weight',
+        'is_active',
+        'sale_id',
+        'category_id',
+        'product_attribute_id'
+    ];
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -18,7 +29,7 @@ class Product extends Model
 
     public function attribute(): BelongsTo
     {
-        return $this->belongsTo(ProductAttribute::class);
+        return $this->belongsTo(ProductAttribute::class, 'product_attribute_id');
     }
 
     public function labels(): BelongsToMany

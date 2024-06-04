@@ -13,6 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('app:set-sale-label')->everyMinute();
+        $schedule->command('app:set-popular-label')->everyMinute();
+        $schedule->command('app:set-new-label')->everyMinute();
+
     }
 
     /**

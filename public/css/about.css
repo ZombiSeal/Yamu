@@ -1,0 +1,40 @@
+.about {
+  display: flex;
+  align-items: center;
+  gap: 5vw;
+}
+.about__title {
+  margin-top: 0;
+}
+.about__text {
+  margin-bottom: 15px;
+}
+.about__info {
+  flex: 1;
+}
+.about__img {
+  flex: 1;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  border-top: none;
+}
+
+.advantages__list {
+  display: flex;
+  gap: 5%;
+  margin: 10vh 0;
+}
+.advantages__icon {
+  width: 50%;
+  margin-bottom: 20px;
+}
+.advantages__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+/*# sourceMappingURL=about.css.map */

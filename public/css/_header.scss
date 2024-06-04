@@ -26,54 +26,14 @@ header {
         max-width: 15vw;
     }
 
-    .nav {
-        &__list {
-            display: flex;
-            gap: 4vw;
-        }
 
-        &__link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            &::before{
-                content: '';
-                @include dot(10px);
-                background: $colorAcent;
-                opacity: 0;
-                transform: scale(0);
-                transition: ease-in-out .3s;
-            }
-
-            &:hover {
-                &::before {
-                    opacity: 1;
-                    transform: scale(1);
-                    transition: ease-in-out .3s;
-                }
-            }
-
-            &.active {
-                &::before {
-                    opacity: 1;
-                    transform: scale(1);
-                    background: $colorAcent2;
-                }
-            }
-        }
-    }
 
     .contact {
         display: flex;
         align-items: center;
         gap: 4vw;
-
-        &__list {
-            display: flex;
-            gap: 1vw;
-        }
     }
+
 
     .menu-mob {
         display: none;
@@ -228,4 +188,46 @@ header {
             }
         }
     }
+}
+.nav {
+    &__list {
+        display: flex;
+        gap: 4vw;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &::before{
+            content: '';
+            @include dot(10px);
+            background: $colorAcent;
+            opacity: 0;
+            transform: scale(0);
+            transition: ease-in-out .3s;
+        }
+
+        &:hover {
+            &::before {
+                opacity: 1;
+                transform: scale(1);
+                transition: ease-in-out .3s;
+            }
+        }
+
+        &.active {
+            &::before {
+                opacity: 1;
+                transform: scale(1);
+                background: $colorAcent2;
+            }
+        }
+    }
+}
+
+.social-list {
+    display: flex;
+    gap: 1vw;
 }

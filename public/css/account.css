@@ -1,3 +1,17 @@
+.list-row p {
+  flex: 1;
+  text-align: center;
+}
+.list-row p:first-child {
+  text-align: left;
+}
+.list-row p:last-child {
+  text-align: right;
+}
+
+.account {
+  margin-bottom: 10vh;
+}
 .account__container {
   display: flex;
   align-items: stretch;
@@ -111,6 +125,158 @@
 .table__no-reserve {
   font-weight: 700;
   color: #9ca3af;
+}
+
+.list__header {
+  width: 100%;
+  border-bottom: 3px solid #FFD582;
+  border-color: #C1272D;
+}
+.list__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.list-row {
+  width: 85%;
+  margin: 20px;
+}
+
+.accordion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion__item {
+  width: 100%;
+}
+.accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: inherit;
+  background: #ffffff;
+  border: 3px solid #FFD582;
+  transition: all 0.3s ease-in-out;
+}
+.accordion__header:not(.active):hover {
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+.accordion__header.active {
+  background: #FFD582;
+}
+.accordion__header.active + .accordion__content {
+  opacity: 1;
+}
+.accordion__header.active > .accordion__btn {
+  transform: rotate(180deg);
+}
+.accordion__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background: #C1272D;
+  border-radius: 50%;
+  margin-right: 20px;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  transition: all 0.3s ease-in-out;
+}
+.accordion__btn:hover {
+  box-shadow: inset 0 0 0 2px #ffffff;
+}
+.accordion__btn svg {
+  margin: 0;
+}
+.accordion__content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s linear;
+}
+.accordion__all {
+  position: relative;
+  padding: 20px 30px;
+  border: 3px solid #FFD582;
+  border-top: none;
+}
+.accordion__all::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 80%;
+  height: 100%;
+  background: #C1272D;
+  border-radius: 0 0 235px 0;
+}
+.accordion__all .btn {
+  padding: 15px 0;
+}
+.accordion__row {
+  gap: 10px;
+}
+.accordion__prices p:first-child {
+  margin-bottom: 10px;
+}
+.accordion__price, .accordion__prices {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.account-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  border: 3px solid #FFD582;
+  border-top: none;
+}
+.account-card__item {
+  width: 85%;
+  justify-content: start;
+  gap: 20px;
+}
+.account-card__img {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  height: max-content;
+  align-self: center;
+  margin: 15px 0;
+}
+.account-card__img::after {
+  content: "";
+  display: block;
+  width: 3px;
+  height: 85px;
+  background: #C1272D;
+}
+.account-card__title {
+  margin-bottom: 30px;
+}
+
+.coupons-list {
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.coupons-list__item {
+  flex: 1 0 25%;
+  max-width: 25%;
+  text-align: center;
+  padding: 30px 0;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+}
+.coupons-list__title {
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 /*# sourceMappingURL=account.css.map */

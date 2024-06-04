@@ -22,6 +22,7 @@
 .order {
     align-items: flex-start;
     gap: 30px;
+    margin-bottom: 10vh;
 
     &__warning {
         color: $mainColor;
@@ -139,7 +140,7 @@
     }
 }
 
-.attention {
+.addition {
     &__item {
         text-align: center;
     }
@@ -208,32 +209,7 @@
     }
 }
 
-.coupon {
-    display: flex;
-    width: max-content;
-    border: $border;
-    border-color: $colorAcent;
-    background: $mainColor;
 
-    &__info {
-        margin: 10px;
-    }
-
-    &__code {
-        text-transform: uppercase;
-    }
-
-    &__del {
-        background: $colorAcent;
-
-        svg {
-            transition: ease-in-out .5s;
-        }
-
-        &:hover {
-            svg {
-                transform: scale(1.2) rotate(180deg);
-            }
-        }
-    }
+.input-coupon input {
+    text-transform: uppercase;
 }

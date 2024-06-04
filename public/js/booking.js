@@ -5,6 +5,8 @@ let time = document.querySelector('input[type="time"]');
 date.value = new Date().toISOString().slice(0, 10);
 let isEditLink = document.querySelector('.current-info');
 
+setInputs();
+setPhoneMask();
 
 let tables = document.querySelectorAll('.table');
 if (tables.length !== 0) {
@@ -119,14 +121,19 @@ function formSubmit() {
         return res.json();
     }).then(data => {
         if (data["status"] === "ok") {
-            alert(data["message"]);
-            updateTables();
+            showPopup(data["message"]);
+            let close = document.querySelector('.popup .close');
+            close.addEventListener('click', () => {
+                window.location.href = '/account/reserve'
+            })
+            // updateTables();
         }
         if (data["status"] === "edit") {
             window.location = "/account/reserve";
         }
-        if (data["status" === "error"]) {
+        if (data["status"] === "error") {
             if (data["errors"].length !== 0) {
+
                 setErrors(data["errors"]);
             }
         }

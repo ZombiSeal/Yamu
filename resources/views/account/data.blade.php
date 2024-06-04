@@ -42,7 +42,6 @@
             </div>
             <x-button class="data-sbmt">Изменить</x-button>
         </form>
-
     </div>
     <script src="{{asset('/js/acc-data.js')}}"></script>
 @endsection

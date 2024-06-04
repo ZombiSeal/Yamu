@@ -1,3 +1,4 @@
+flatpickr.localize(flatpickr.l10ns.ru);
 flatpickr("input[type='time']", {
     enableTime: true,
     noCalendar: true,
@@ -20,6 +21,5 @@ flatpickr(".account input[type='date']", {
     dateFormat: "d.m.Y",
     defaultDate: "today",
 });
-
 
 

@@ -146,7 +146,6 @@
                 <input type="hidden" name="currentDate" value="{{$table->date}}">
                 <input type="hidden" name="currentTime" value="{{$table->time}}">
                 <input type="hidden" name="currentNumber" value="{{$table->table->number}}">
-
             </div>
         @endif
     </div>

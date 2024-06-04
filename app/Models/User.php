@@ -25,6 +25,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Quiz::class, "user_quizzes");
     }
 
+    public function coupons(): BelongsToMany
+    {
+        return $this->belongsToMany(Coupon::class, "user_coupons");
+    }
     public function tables(): BelongsToMany
     {
         return $this->belongsToMany(Table::class);
@@ -60,4 +64,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }

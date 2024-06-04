@@ -17,28 +17,26 @@ class QuizController extends Controller
 {
     public function index()
     {
-        $quizzes = Quiz::all();
-        $user = User::find(Auth::id());
+//        $user = User::find(Auth::id());
 
-        $userQuizzes = ($user) ? $user->quizzes : null;
-        $hasCoupon = QuizCoupon::all();
+        $quizzesCoupon = Quiz::with('coupon')->pluck('coupon_id');
+        $userCoupons =  UserCoupon::where('user_id', Auth::id())->pluck('coupon_id');
 
-//dd($hasCoupon);
-
-        if($userQuizzes){
-            $quizzes = $quizzes->diff($userQuizzes);
-        }
-//
-//        if($hasCoupon){
-//            $quizzes = $quizzes->intersect($hasCoupon);
-//        }
-//        dd($quizzes);
+        $showQuizzes = $quizzesCoupon->diff($userCoupons);
+        $quizzes = Quiz::whereIn('coupon_id', $showQuizzes)->get();
 
         return view('quizzes.all', ['quizzes' => $quizzes]);
     }
 
     public function detail(int $id, Request $request)
     {
+        $couponId = Quiz::find($id)->coupon_id;
+        $isDone = UserCoupon::where('user_id', Auth::id())->where('coupon_id', $couponId)->first();
+
+        if($isDone) {
+            abort(404);
+        }
+
         $request->session()->put('answers');
         $params = $this->getQuestion($id, 0);
         return view('quizzes.quiz', $params);
@@ -86,34 +84,19 @@ class QuizController extends Controller
 
     private function addUserCoupon() : bool
     {
-        $isDone = UserQuiz::where('user_id', Auth::id())->where('quiz_id', \request()->route('id'))->first();
-        if(count($isDone) > 0){
-            return true;
-        } else {
-            try {
-                DB::transaction(function () {
-                    $quizCoupon= Quiz::find(\request()->route('id'));
-                    $couponId = $quizCoupon->coupons->first()->id;
-                    UserCoupon::create([
-                        'user_id' => Auth::id(),
-                        'coupon_id' => $couponId,
-                    ]);
-                    UserQuiz::create([
-                        'user_id' => Auth::id(),
-                        'quiz_id' => \request()->route('id'),
-                    ]);
-                });
-                return true;
-            } catch (\Throwable $e) {
-                return false;
-            }
-        }
+        $couponId= Quiz::find(\request()->route('id'))->coupon_id;
+        $userCouponId = UserCoupon::create([
+            'user_id' => Auth::id(),
+            'coupon_id' => $couponId,
+        ]);
+
+        return ($userCouponId) ? true : false;
     }
 
     private function getQuestion(int $quizId, int $questionNumber): array
     {
         $quiz = Quiz::find($quizId);
-        $answers = $quiz->questionAnswers($quiz->questions[$questionNumber]->id)->get();
+        $answers = $quiz->questionAnswers($quiz->questions[$questionNumber]->id)->inRandomOrder()->get();
         $questions = $quiz->questions;
 
         return [

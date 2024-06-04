@@ -1,0 +1,227 @@
+.admin-header {
+  display: flex;
+  justify-content: center;
+}
+.admin-header .logo {
+  width: 85px;
+  padding: 10px;
+}
+
+.admin-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  max-width: 95vw;
+  margin: 30px auto;
+}
+.admin-container__content {
+  width: 100%;
+  padding: 0 20px;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  padding: 2vh;
+}
+.admin-container .ac-menu__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.admin-container .ac-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 3px solid #FFD582;
+  padding: 20px;
+}
+.admin-container .ac-menu__item.active {
+  background: #FFD582;
+}
+.admin-container__img {
+  flex: 1;
+  height: 80px;
+}
+.admin-container__th {
+  width: 100%;
+  border-bottom: 3px solid #FFD582;
+  border-color: #C1272D;
+}
+.admin-container__body {
+  margin: 20px 0;
+}
+.admin-container__tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid #FFD582;
+  margin-bottom: 10px;
+}
+.admin-container__tr--block {
+  display: block;
+}
+.admin-container__radio {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-self: center;
+}
+.admin-container .list-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  box-sizing: border-box;
+  width: 85%;
+}
+.admin-container .list-row--l {
+  width: auto;
+  max-width: 100%;
+}
+.admin-container .list-row p {
+  flex: 1;
+  text-align: center;
+}
+.admin-container .list-row p.admin-container__item--m {
+  flex: 2;
+}
+.admin-container .list-row p.admin-container__item--l {
+  flex: 3;
+}
+.admin-container .list-row p:first-child {
+  text-align: left;
+  flex: 0;
+  min-width: 5%;
+}
+.admin-container .btn {
+  padding: 15px 0;
+}
+.admin-container__sbmt {
+  width: 20%;
+  margin-top: 50px;
+}
+.admin-container__btn {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+.admin-container__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #C1272D;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+.admin-container__icon:hover {
+  box-shadow: inset 0 0 0 2px #ffffff;
+}
+.admin-container__icon svg {
+  fill: #ffffff;
+  vertical-align: top;
+}
+.admin-container .row {
+  align-items: start;
+  gap: 5vw;
+}
+.admin-container__row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.admin-container__row .item {
+  flex: 1;
+}
+.admin-container__col {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+.admin-container__col--l {
+  width: 70%;
+}
+.admin-container__col--s {
+  width: 30%;
+}
+.admin-container select {
+  width: 100%;
+  border: 3px solid #FFD582;
+  border-color: #C1272D;
+  background: #ffffff;
+  font-size: smaller;
+  padding: 20px;
+}
+.admin-container select option {
+  background: #ffffff;
+  border-radius: 0;
+}
+
+.input-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-file__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+}
+.input-file input[type=file] {
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.input-file__label {
+  width: 220px;
+  height: 3rem;
+  border: 3px solid #FFD582;
+  display: block;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.input-file__label.error {
+  background: #C1272D;
+  color: #ffffff;
+}
+.input-file__label.error svg {
+  fill: #ffffff;
+}
+.input-file__label:hover {
+  background: #FFD582;
+}
+
+.image-preview {
+  width: max-content;
+  margin-top: 10px;
+}
+.image-preview__block {
+  display: flex;
+  align-items: stretch;
+}
+.image-preview__img {
+  max-width: 200px;
+  height: auto;
+}
+.image-preview__title {
+  font-weight: bold;
+  text-align: center;
+}
+.image-preview__btn {
+  background-color: #C1272D;
+  color: #ffffff;
+  border: none;
+  padding: 0 0.2rem;
+  cursor: pointer;
+}
+.image-preview__btn svg {
+  fill: #ffffff;
+}
+
+/*# sourceMappingURL=admin.css.map */

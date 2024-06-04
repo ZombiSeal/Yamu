@@ -61,7 +61,6 @@ class BookTableController extends Controller
         ]);
 
         $validatorOther = $validator->errors()->toArray();
-
         $validatorData = $validatorName + $validatorPhone + $validatorOther;
 
         if (count($validatorData) == 0) {
@@ -70,7 +69,7 @@ class BookTableController extends Controller
 
             $table = BookTable::create([
                 'table_id' => $tableInfo->id,
-                'user_id' => (Auth::id()) ?: 0,
+                'user_id' => (Auth::id()) ?: null,
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'date' => $date,
@@ -120,8 +119,8 @@ class BookTableController extends Controller
 
     public function updateTables(Request $request)
     {
-        $date = DateTime::createFromFormat('d.m.Y', $request->date);
-        $bookTables = $this->getReserveTables($date->format('Y-m-d'));
+        $date = DateTime::createFromFormat('d.m.Y', $request->date)->format('Y-m-d');
+        $bookTables = $this->getReserveTables($date);
         return response()->json($bookTables);
     }
 

@@ -1,0 +1,276 @@
+@import "variables";
+
+.admin-header {
+    display: flex;
+    justify-content: center;
+
+    .logo {
+        width: 85px;
+        padding: 10px;
+    }
+}
+
+.admin-container {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    max-width: 95vw;
+    margin: 30px auto;
+
+    &__content {
+        width: 100%;
+        padding: 0 20px;
+        border: $border;
+        border-color: $colorAcent;
+        padding: 2vh;
+    }
+
+    .ac-menu {
+        &__list {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: $border;
+            padding: 20px;
+
+            &.active {
+                background: $colorAcent2;
+            }
+        }
+    }
+
+    &__img {
+        flex: 1;
+        height: 80px;
+    }
+
+    &__th {
+        width: 100%;
+        border-bottom: $border;
+        border-color: $colorAcent;
+    }
+
+    &__body {
+        margin: 20px 0;
+    }
+
+
+    &__tr {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: $border;
+        margin-bottom: 10px;
+
+        &--block {
+            display: block;
+        }
+    }
+
+    &__radio {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+        align-self: center;
+    }
+
+    .list-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+        box-sizing:border-box;
+        width:85%;
+
+        &--l {
+            width:auto;
+            max-width: 100%;
+        }
+
+        p {
+            flex: 1;
+            text-align: center;
+
+            &.admin-container__item {
+                &--m {
+                    flex: 2;
+                }
+                &--l {
+                    flex: 3;
+                }
+            }
+
+            &:first-child {
+                text-align: left;
+                flex: 0;
+                min-width: 5%;
+            }
+
+        }
+    }
+
+    .btn {
+        padding: 15px 0;
+    }
+
+    &__sbmt {
+        width: 20%;
+        margin-top: 50px;
+    }
+
+
+    &__btn {
+        display: flex;
+        gap: 10px;
+        margin: 10px;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: $colorAcent;
+        border: $border;
+        border-color: $colorAcent;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: ease-in-out .3s;
+
+
+        @include insertShadow(2px, $mainColor);
+
+        svg {
+            fill: $mainColor;
+            vertical-align: top;
+        }
+    }
+
+    .row {
+        align-items: start;
+        gap: 5vw;
+    }
+
+    &__row {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 20px;
+
+        .item {
+            flex: 1;
+        }
+    }
+
+    &__col {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+
+        &--l {
+            width: 70%;
+        }
+
+        &--s {
+            width: 30%;
+        }
+    }
+
+    select {
+        width: 100%;
+        border: $border;
+        border-color: $colorAcent;
+        background: $mainColor;
+        font-size: smaller;
+        padding: 20px;
+
+        option {
+            background: $mainColor;
+            border-radius: 0;
+        }
+    }
+}
+
+
+.input-file {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: inherit;
+    }
+
+    input[type=file] {
+        outline: 0;
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &__label {
+        width: 220px;
+        height: 3rem;
+        border: $border;
+        display: block;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &.error {
+            background: $colorAcent;
+            color: $mainColor;
+
+            svg {
+                fill: $mainColor;
+            }
+        }
+        &:hover {
+            background: $colorAcent2;
+        }
+    }
+}
+
+.image-preview {
+    width: max-content;
+    margin-top: 10px;
+
+    &__block {
+        display: flex;
+        align-items: stretch;
+    }
+
+    &__img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    &__title {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__btn {
+        background-color: $colorAcent;
+        color: $mainColor;
+        border: none;
+        padding: 0 0.2rem;
+        cursor: pointer;
+
+        svg {
+            fill: $mainColor;
+        }
+    }
+}
+
+

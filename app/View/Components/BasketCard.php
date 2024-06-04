@@ -12,11 +12,10 @@ class BasketCard extends Component
      *
      * @return void
      */
-    public string $type;
-    public function __construct($type)
-    {
-        $this->type = $type;
-    }
+    public function __construct(
+        public string $type,
+        public object $product
+    ){}
 
     /**
      * Get the view / contents that represent the component.

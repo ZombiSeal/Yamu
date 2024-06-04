@@ -13,4 +13,14 @@ class Address extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    protected $fillable = [
+        'city',
+        'street',
+        'house',
+        'corpus',
+        'flat',
+        'entrance',
+        'floor'
+    ];
 }

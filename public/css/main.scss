@@ -1,6 +1,87 @@
+@import "variables";
 .banner {
     height: calc(100vh - 90px);
     video {
         object-fit: cover;
     }
 }
+
+.about {
+    border-bottom: $border;
+    overflow: clip;
+
+    &__wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px 0;
+
+
+        &::before {
+            content: '';
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            z-index: -1;
+            width: 20vw;
+            height: 100%;
+            background: $colorAcent2;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            top: 35%;
+            right: -20%;
+            z-index: -2;
+            width: 50vw;
+            height: 20vw;
+            background: $colorAcent;
+        }
+    }
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 7vh;
+        max-width: 680px;
+    }
+
+    &__link {
+        display: block;
+        max-width: 350px;
+        flex-basis: auto;
+    }
+
+}
+
+.new {
+    border-bottom: $border;
+    padding: 30px 0 7vh;
+    .swiper {
+        overflow: unset;
+    }
+    .swiper-pagination {
+        position: relative;
+        margin-top: 25px;
+        .swiper-pagination-bullet {
+            width: 20px;
+            height: 20px;
+            background: $colorAcent2;
+            opacity: 1;
+
+            &-active {
+                background: $colorAcent;
+            }
+        }
+    }
+}
+
+@import "contact";

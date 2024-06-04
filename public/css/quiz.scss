@@ -1,24 +1,66 @@
+@import "variables";
+.quiz {
+    min-height: calc(100vh - 380px);
+}
 .quiz-wrapper {
     display: flex;
     gap: 5%;
     flex-wrap: wrap;
+    margin-bottom: 10vh;
 
     &__card {
         display: block;
         width: calc(100% / 3 - 5%);
         border: 3px solid #FFD582;
+        transition: ease-in-out .3s;
 
         img {
             width: 100%;
             height: 190px;
             box-sizing: border-box;
+            object-fit: cover;
+        }
+
+        &:hover {
+            box-shadow: -12px 11px 10px rgba(0, 0, 0, .15);
+            transform: translateY(-10px);
         }
     }
 
     &__text {
-        p {
-            margin: 10px 25px;
+        position: relative;
+        overflow: clip;
+        padding: 10px 25px 20px;
+
+        &::before {
+            @include circle-bg(top, right, -50%, -25%, 260px, 260px);
+            z-index: -1;
         }
+    }
+
+    &__title {
+        display: block;
+        height: 3rem;
+        line-height: 1.5rem;
+        overflow: hidden;
+        margin-bottom: 5px;
+    }
+
+    &__desc {
+        height: 5rem;
+    }
+
+    &__count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $mainColor;
+
+        p {
+            font-family: $fontH1;
+            @include adaptiv-font(64, 22);
+        }
+
     }
 }
 
@@ -29,5 +71,60 @@
         div {
             margin-bottom: 30px;
         }
+    }
+
+    &__radio {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.pulse {
+    position: relative;
+    padding: 20px;
+    border-radius: 50%;
+    background: $colorAcent;
+    width: 20rem;
+    height: 20rem;
+
+    &::after,
+    &::before {
+        content: '';
+        position: absolute;
+        border: 15px solid $colorAcent;
+        left: -20px;
+        opacity: 0;
+        right: -20px;
+        top: -20px;
+        bottom: -20px;
+        border-radius: 50%;
+        animation: pulse 2.5s linear infinite;
+    }
+
+    &::after {
+        border: 10px solid $colorAcent;
+        animation-delay: 1s;
+    }
+}
+
+.end {
+    .btn {
+        display: block;
+        width: 300px;
+        margin-top: 30px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
     }
 }

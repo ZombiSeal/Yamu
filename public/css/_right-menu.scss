@@ -1,17 +1,20 @@
 .r-menu-wrapper {
+    $blockWidth: 820px;
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 2;
-    width: 820px;
+    z-index: 1;
+    width: calc(100% + $blockWidth);
     display: flex;
     justify-content: flex-end;
     overflow: clip;
-    transform: translateX(calc(100% - 70px));
+    transform: translateX(calc($blockWidth - 70px));
     transition: transform ease-in-out .45s .05s, z-index 0s 0.45s;
 
     &.show {
         z-index: 3;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
         transform: translateX(0);
         transition: transform ease-in-out .45s, z-index 0s;
     }
@@ -22,10 +25,11 @@
 
     &__content {
         position: relative;
-        width: calc(100% - 70px);
+        width: calc($blockWidth - 70px);
         height: 100vh;
         background: #ffffff;
         overflow: scroll;
+        overflow-x: clip;
 
         &::after {
             @include circle-bg(right, top, -440px, -65px, 955px, 955px);

@@ -18,6 +18,7 @@
 .order {
   align-items: flex-start;
   gap: 30px;
+  margin-bottom: 10vh;
 }
 .order__warning {
   color: #ffffff;
@@ -132,10 +133,10 @@
   width: 60%;
 }
 
-.attention__item {
+.addition__item {
   text-align: center;
 }
-.attention__title {
+.addition__title {
   margin-bottom: 15px;
 }
 
@@ -189,27 +190,8 @@
   width: 50%;
 }
 
-.coupon {
-  display: flex;
-  width: max-content;
-  border: 3px solid #FFD582;
-  border-color: #C1272D;
-  background: #ffffff;
-}
-.coupon__info {
-  margin: 10px;
-}
-.coupon__code {
+.input-coupon input {
   text-transform: uppercase;
-}
-.coupon__del {
-  background: #C1272D;
-}
-.coupon__del svg {
-  transition: ease-in-out 0.5s;
-}
-.coupon__del:hover svg {
-  transform: scale(1.2) rotate(180deg);
 }
 
 /*# sourceMappingURL=order.css.map */

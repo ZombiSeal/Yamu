@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Question extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'text',
+        'quiz_id'
+    ];
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);

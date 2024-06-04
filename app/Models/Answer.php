@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Answer extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'text',
+        'is_correct',
+        'question_id'
+    ];
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class);

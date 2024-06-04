@@ -1,8 +1,13 @@
 @extends('layouts.account')
 @section('info')
     <h2>Бронирование</h2>
+    @if(!$tables->isEmpty())
     <div class="tables-wrapper">
         @foreach($tables as $table)
+            @php
+                $currentDate = \Carbon\Carbon::parse(date('d.m.Y'));
+                $tableDate = \Carbon\Carbon::parse($table->date);
+            @endphp
             <div class="table row" data-id="{{$table->id}}">
                 <div class="table__info row">
                     <div class="table__item">
@@ -15,7 +20,7 @@
                     </div>
                 </div>
 
-                @if($table->date > date('d.m.Y'))
+                @if($currentDate->lt($tableDate) || $currentDate->eq($tableDate))
                     <div class="table__item table__action">
                         @if($table->is_active)
                             <a class="table__icon edit" href="{{{route('booking', ['action' => 'edit','id' => $table->id])}}}">
@@ -37,6 +42,12 @@
                 @endif
             </div>
         @endforeach
+    </div>
+    @else
+        <p>У вас нет забронированных столиков</p>
+    @endif
+    <div class="catalog__pagination">
+        {{$tables->links('vendor.pagination.custom')}}
     </div>
 
     <script src="{{asset('/js/acc-reserve.js')}}"></script>

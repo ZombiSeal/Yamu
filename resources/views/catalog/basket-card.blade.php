@@ -1,14 +1,14 @@
-<div class="basket-card">
+<div class="basket-card" data-id="{{$product->id}}" data-type="{{$type}}">
     <div class="basket-card__img {{($type === 'order') ? 'basket-card__img--s' : ''}}">
-        <img src="{{asset('/images/ramen.png')}}" alt="">
+        <img src="{{asset('/images/products/'.$product->img_path)}}" alt="">
     </div>
     <div class="basket-card__info {{($type === 'order') ? 'basket-card__info--s' : ''}}">
-        <div class="acent acent--s">Филадельфия Сан сет (промо акция)</div>
+        <div class="acent acent--s">{{$product->title}}</div>
         <div class="row basket-card__row">
-            <x-number></x-number>
+            <x-number class="number-basket" data-type="{{$type}}" value="{{session('basket.' . $product->id)['capacity']}}"></x-number>
             <div class="basket-card__text">
-                <p class="basket-card__price acent {{($type === 'order') ? '' : 'acent--l'}}">19.99 руб.</p>
-                <p class="basket-card__weight">111 г</p>
+                <p class="basket-card__price acent {{($type === 'order') ? '' : 'acent--l'}}"> {{session('basket.' . $product->id)['fullPrice']}}руб.</p>
+                <p class="basket-card__weight">{{$product->weight}} г</p>
             </div>
         </div>
     </div>

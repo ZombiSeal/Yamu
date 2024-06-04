@@ -30,14 +30,38 @@ class Order extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function coupon(): BelongsTo
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+
+    public function couponSale(): \Illuminate\Database\Eloquent\Relations\HasOneThrough
+    {
+        return $this->hasOneThrough(Sale::class, Coupon::class, 'id', 'id', 'coupon_id', 'sale_id');
+    }
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'info_orders', 'order_id', 'product_id');
     }
 
     public function additions(): BelongsToMany
     {
         return $this->belongsToMany(Addition::class);
     }
+
+    protected $fillable = [
+        'number',
+        'name',
+        'phone',
+        'delivery_time',
+        'date',
+        'comment',
+        'coupon_id',
+        'user_id',
+        'delivery_id',
+        'payment_id',
+        'status_id',
+        'address_id'
+    ];
 
 }

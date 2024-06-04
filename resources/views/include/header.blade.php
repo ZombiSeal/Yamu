@@ -27,7 +27,7 @@
             </nav>
             <div class="contact">
                 <div class="contact__phone acent line">+375 29 111 11 11</div>
-                <ul class="contact__list">
+                <ul class="contact__list social-list">
                     <li class="contact__list">
                         <a href="" class="contact__item">
                             <img src="/images/svg/icon_youtube.svg" alt="">

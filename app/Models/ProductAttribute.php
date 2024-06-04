@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ProductAttribute extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'carbs',
+        'protein',
+        'fats',
+        'calories'
+    ];
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

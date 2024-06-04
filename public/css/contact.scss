@@ -1,0 +1,46 @@
+@import "variables";
+.contact-flex {
+    display: flex;
+    height: 70vh;
+    margin-bottom: 10vh;
+
+    &__item {
+        flex: 1;
+        min-width: 25%;
+    }
+
+    &__img {
+        flex: 1;
+        img {
+            object-fit: cover;
+        }
+    }
+
+    &__contact {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background: $colorAcent2;
+    }
+
+    &__contact-wrapper {
+        margin-left: 10%;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20%;
+    }
+
+    &__text {
+        .acent {
+            margin-bottom: 10px;
+        }
+    }
+    &__map {
+        flex: 3;
+    }
+
+}

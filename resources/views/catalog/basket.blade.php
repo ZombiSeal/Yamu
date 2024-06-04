@@ -1,3 +1,4 @@
+@if(session("basket"))
 <div class="wrapper basket">
     <div class="row basket__row">
         <h1 class="wrapper__title">Корзина</h1>
@@ -9,18 +10,20 @@
         </div>
     </div>
     <div class="basket__content">
-        <x-basket-card type="basket"></x-basket-card>
-        <x-basket-card type="basket"></x-basket-card>
-        <x-basket-card type="basket"></x-basket-card>
-        <x-basket-card type="basket"></x-basket-card>
+            @foreach($products as $product)
+                <x-basket-card type="basket" :product="$product['product']"></x-basket-card>
+            @endforeach
     </div>
 </div>
 <div class="basket-info">
     <div class="basket-info__wrapper">
-        <div class="acent">Сумма заказа: <span>19.99 руб.</span></div>
+        <div class="acent">Сумма заказа: <span class="full-price">{{$fullPrice}} руб.</span ></div>
         <x-button href="{{route('order')}}">Оформить заказ</x-button>
     </div>
 </div>
+@else
+    <x-empty-basket></x-empty-basket>
+@endif
 <link rel="stylesheet" href="{{asset('/css/basket.css')}}">
 <script src="{{asset('/js/catalog.js')}}"></script>
 
