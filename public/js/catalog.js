@@ -118,7 +118,12 @@ if(orderForm) {
                     showPopup(data["message"]);
                     let close = document.querySelector('.popup .close');
                     close.addEventListener('click', () => {
-                        window.location.href = '/account/orders'
+                        if(data["auth"]) {
+                            window.location.href = '/account/orders';
+                        } else {
+                            window.location.href = '/';
+                        }
+
                     })
                     console.log(close);
                     console.log(data);

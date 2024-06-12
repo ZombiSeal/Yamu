@@ -20,6 +20,7 @@
   gap: 30px;
   max-height: calc(100vh - 290px);
   overflow: scroll;
+  overflow-x: hidden;
 }
 
 .basket-info {

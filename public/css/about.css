@@ -37,4 +37,37 @@
   text-align: center;
 }
 
+.delivery {
+  margin-bottom: 10vh;
+}
+.delivery .row {
+  gap: 60px;
+}
+.delivery__info {
+  width: 55%;
+}
+.delivery__img {
+  width: 45%;
+}
+.delivery__list {
+  margin-bottom: 60px;
+}
+.delivery__item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 30px;
+}
+.delivery__item::before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #C1272D;
+  border-radius: 50%;
+  transform: translate(0, -50%);
+}
+
 /*# sourceMappingURL=about.css.map */

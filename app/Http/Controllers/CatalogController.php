@@ -255,7 +255,8 @@ class CatalogController extends Controller
 
 
                 });
-                return response()->json(["status" => "ok", "message" => "Заказ будет подтвержден после звонка оператора"]);
+                $isAuth = (Auth::id()) ? true : false;
+                return response()->json(["status" => "ok", "message" => "Заказ будет подтвержден после звонка оператора", "auth" => $isAuth]);
             } catch (\Throwable $e) {
                 return response()->json(["error" => $e, "status" => "error"]);
             }

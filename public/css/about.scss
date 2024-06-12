@@ -45,3 +45,44 @@
         text-align: center;
     }
 }
+
+.delivery {
+    .row {
+        gap: 60px;
+    }
+
+    &__info {
+        width: 55%;
+    }
+
+    &__img {
+        width: 45%;
+    }
+
+    &__list {
+        margin-bottom: 60px;
+
+        &:first-child {
+        }
+    }
+
+    &__item {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 30px;
+        &::before {
+            content: '';
+            position: absolute;
+            display: block;
+            left: 0;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: $colorAcent;
+            border-radius: 50%;
+            transform: translate(0, -50%);
+        }
+    }
+
+    margin-bottom: 10vh;
+}

@@ -83,6 +83,11 @@ p {
 .container--back {
   z-index: auto;
 }
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 1670px;
+  }
+}
 
 .wrapper {
   position: relative;

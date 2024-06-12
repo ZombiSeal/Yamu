@@ -19,7 +19,7 @@
                     Yamu&nbsp;&mdash; место, где еда становится искусством. Приходите и&nbsp;убедитесь сами!</p>
             </div>
             <div class="about__img">
-                <img src="{{asset('/images/about.jpeg')}}" alt="">
+                <img src="{{asset('/images/about.jpg')}}" alt="">
             </div>
         </section>
         <section class="advantages">
